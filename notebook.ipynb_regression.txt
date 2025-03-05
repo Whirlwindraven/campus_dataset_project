@@ -1,0 +1,186 @@
+
+----- REGRESSION ANALYSIS: FACTORS PREDICTING GPA -----
+                      Variable  Coefficient  Abs_Coefficient
+2               avg_attendance     2.555580         2.555580
+3              completion_rate     0.493280         0.493280
+1  avg_cw_connections_per_week     0.002699         0.002699
+0   avg_messages_sent_per_week    -0.001934         0.001934
+R² Score: 0.5256
+Intercept: -0.2599
+
+Interpretation:
+- Every 1 unit increase in avg_attendance is associated with a 2.556 point increase in GPA
+- Every 1 unit increase in completion_rate is associated with a 0.493 point increase in GPA
+- Every 1 unit increase in avg_cw_connections_per_week is associated with a 0.003 point increase in GPA
+- Every 1 unit increase in avg_messages_sent_per_week is associated with a 0.002 point decrease in GPA
+
+The model explains 52.6% of the variation in GPA scores
+
+----- BINARY EVENT ATTENDANCE ANALYSIS -----
+Number of students who attended at least one event: 363 out of 1707 (21.27%)
+
+GPA comparison by event attendance:
+                        mean    median       std  count
+attended_any_event                                     
+0                   1.516388  0.888889  1.634253   1344
+1                   2.241413  2.692308  1.674493    363
+
+Statistical test for GPA difference:
+t-statistic: 7.3572
+p-value: 0.0000
+The difference is statistically significant at the 0.05 level.
+Effect size (Cohen's d): 0.4382
+This represents a small effect.
+
+Event attendance by student segment:
+                    Percentage Attended Any Event  Count
+primary_motivation                                      
+All-Around Engaged                      37.795276    381
+Socially-Driven                         24.364407    472
+Minimally-Involved                      17.500000     40
+Academic-Driven                         15.822785    158
+Disengaged                              10.975610    656
+
+Demographic profile of event attendees vs. non-attendees:
+
+Gender distribution:
+attended_any_event     0     1   All
+gender                              
+Unknown              0.2   0.0   0.2
+female              70.2  71.1  70.4
+male                27.3  26.2  27.1
+no-binary            2.3   1.9   2.2
+other                0.0   0.8   0.2
+
+Race distribution:
+attended_any_event     0     1   All
+race                                
+americanIndian       1.9   1.9   1.9
+asian                1.6   1.1   1.5
+black               47.5  57.9  49.7
+mixed               13.9  13.5  13.8
+nativeHawaiian       0.7   0.3   0.6
+white               34.4  25.3  32.5
+
+First-generation status distribution:
+attended_any_event     0     1   All
+first_gen                           
+False               54.9  50.1  53.9
+True                45.1  49.9  46.1
+
+Logistic Regression: Factors predicting event attendance
+                      Variable  Coefficient  Odds_Ratio
+3               avg_attendance     2.179953    8.845893
+4              completion_rate     0.239347    1.270419
+1   avg_messages_sent_per_week     0.023161    1.023431
+2  avg_cw_connections_per_week     0.005467    1.005481
+5    platform_engagement_score     0.000198    1.000198
+0                 Lifetime_GPA    -0.193986    0.823670
+
+Interpretation:
+- For each unit increase in avg_attendance, the odds of attending an event increase by 784.6%
+- For each unit increase in completion_rate, the odds of attending an event increase by 27.0%
+- For each unit increase in avg_messages_sent_per_week, the odds of attending an event increase by 2.3%
+- For each unit increase in avg_cw_connections_per_week, the odds of attending an event increase by 0.5%
+- For each unit increase in platform_engagement_score, the odds of attending an event increase by 0.0%
+- For each unit increase in Lifetime_GPA, the odds of attending an event decrease by 17.6%
+
+----- STUDENT SEGMENT PROFILES -----
+                    Count  Percentage  Lifetime_GPA  \
+Disengaged            656        38.4          0.36   
+Socially-Driven       472        27.7          1.00   
+All-Around Engaged    381        22.3          3.77   
+Academic-Driven       158         9.3          3.76   
+Minimally-Involved     40         2.3          2.89   
+
+                    avg_messages_sent_per_week  avg_cw_connections_per_week  \
+Disengaged                                1.84                         9.46   
+Socially-Driven                          16.97                        56.85   
+All-Around Engaged                       17.82                       115.82   
+Academic-Driven                           2.46                        22.50   
+Minimally-Involved                        2.44                        23.81   
+
+                    total_events_present  avg_attendance  completion_rate  \
+Disengaged                          0.18            0.31             0.35   
+Socially-Driven                     0.46            0.65             0.54   
+All-Around Engaged                  0.97            0.92             0.94   
+Academic-Driven                     0.32            0.82             0.88   
+Minimally-Involved                  0.20            0.79             0.89   
+
+                    platform_engagement_score  \
+Disengaged                               0.02   
+Socially-Driven                          0.17   
+All-Around Engaged                       0.21   
+Academic-Driven                          0.03   
+Minimally-Involved                       0.03   
+
+                                                        Primary Needs  
+Disengaged          Comprehensive intervention and re-engagement s...  
+Socially-Driven     Academic support to channel social engagement ...  
+All-Around Engaged   Leadership opportunities and advanced challenges  
+Academic-Driven     Increase social integration while maintaining ...  
+Minimally-Involved   Motivation enhancement and engagement incentives  
+
+----- DEMOGRAPHIC ANALYSIS BY SEGMENT -----
+Race distribution within segments:
+race                americanIndian     asian      black      mixed  \
+primary_motivation                                                   
+Academic-Driven           2.531646  3.164557  47.468354  13.291139   
+All-Around Engaged        2.624672  1.312336  42.257218  14.698163   
+Disengaged                1.676829  1.524390  52.439024  14.024390   
+Minimally-Involved        0.000000  0.000000  55.000000  15.000000   
+Socially-Driven           1.483051  1.059322  52.118644  12.923729   
+
+race                nativeHawaiian      white  
+primary_motivation                             
+Academic-Driven           0.632911  32.911392  
+All-Around Engaged        1.049869  38.057743  
+Disengaged                0.762195  29.573171  
+Minimally-Involved        0.000000  30.000000  
+Socially-Driven           0.211864  32.203390  
+
+First-generation status by segment:
+first_gen               False      True 
+primary_motivation                      
+Academic-Driven     57.594937  42.405063
+All-Around Engaged  51.181102  48.818898
+Disengaged          53.658537  46.341463
+Minimally-Involved  60.000000  40.000000
+Socially-Driven     54.661017  45.338983
+
+----- KEY METRIC CORRELATIONS -----
+                             Lifetime_GPA  avg_messages_sent_per_week  \
+Lifetime_GPA                         1.00                        0.25   
+avg_messages_sent_per_week           0.25                        1.00   
+avg_cw_connections_per_week          0.41                        0.39   
+avg_attendance                       0.71                        0.36   
+completion_rate                      0.63                        0.14   
+platform_engagement_score            0.35                        0.95   
+total_events_present                 0.19                        0.24   
+
+                             avg_cw_connections_per_week  avg_attendance  \
+Lifetime_GPA                                        0.41            0.71   
+avg_messages_sent_per_week                          0.39            0.36   
+avg_cw_connections_per_week                         1.00            0.44   
+avg_attendance                                      0.44            1.00   
+completion_rate                                     0.40            0.80   
+platform_engagement_score                           0.66            0.44   
+total_events_present                                0.38            0.25   
+
+                             completion_rate  platform_engagement_score  \
+Lifetime_GPA                            0.63                       0.35   
+avg_messages_sent_per_week              0.14                       0.95   
+avg_cw_connections_per_week             0.40                       0.66   
+avg_attendance                          0.80                       0.44   
+completion_rate                         1.00                       0.25   
+platform_engagement_score               0.25                       1.00   
+total_events_present                    0.21                       0.33   
+
+                             total_events_present  
+Lifetime_GPA                                 0.19  
+avg_messages_sent_per_week                   0.24  
+avg_cw_connections_per_week                  0.38  
+avg_attendance                               0.25  
+completion_rate                              0.21  
+platform_engagement_score                    0.33  
+total_events_present                         1.00  
